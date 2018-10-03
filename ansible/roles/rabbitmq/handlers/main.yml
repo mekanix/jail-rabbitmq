@@ -1,0 +1,10 @@
+---
+- name: restart secadm
+  service:
+    name: secadm
+    state: restarted
+
+- name: restart rabbitmq
+  service:
+    name: rabbitmq
+    state: restarted

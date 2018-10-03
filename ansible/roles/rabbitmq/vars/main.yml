@@ -1,0 +1,3 @@
+rabbitmq_packages:
+  - name: rabbitmq
+  - name: secadm

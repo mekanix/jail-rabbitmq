@@ -1,0 +1,28 @@
+---
+- name: install rabbitmq packages
+  with_items: "{{ rabbitmq_packages }}"
+  pkgng:
+    name: "{{ item.name }}"
+  notify:
+    - restart rabbitmq
+
+- name: enable rabbitmq service
+  template:
+    src: rabbitmq.j2
+    dest: /etc/rc.conf.d/rabbitmq
+  notify:
+    - restart rabbitmq
+
+- name: enable secadm service
+  template:
+    src: secadm.j2
+    dest: /etc/rc.conf.d/secadm
+  notify:
+    - restart secadm
+
+- name: configure secadm service
+  template:
+    src: secadm.rules.j2
+    dest: /usr/local/etc/secadm.rules
+  notify:
+    - restart secadm
